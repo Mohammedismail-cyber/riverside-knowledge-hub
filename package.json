@@ -1,0 +1,12 @@
+{
+  "name": "riverside-knowledge-hub",
+  "version": "1.0.0",
+  "description": "A lightweight, role-based knowledge management system that demonstrates the full KM cycle for a university.",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve ."
+  },
+  "keywords": ["knowledge-management", "kms", "wiki", "education", "km-cycle"]
+}

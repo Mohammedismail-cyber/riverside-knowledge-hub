@@ -1,0 +1,32 @@
+# Real Wiki.js deployment (the KMS studied in this assignment).
+# Usage:  cd deploy/wikijs && docker compose up -d
+# Then open http://localhost:3000 and complete the setup wizard.
+# Change the database password before using this anywhere beyond a classroom demo.
+services:
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: wiki
+      POSTGRES_USER: wikijs
+      POSTGRES_PASSWORD: change-me-please
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  wiki:
+    image: requarks/wiki:2
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: wikijs
+      DB_PASS: change-me-please
+      DB_NAME: wiki
+    ports:
+      - "3000:3000"
+
+volumes:
+  db-data:
